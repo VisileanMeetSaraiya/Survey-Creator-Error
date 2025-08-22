@@ -1,0 +1,9 @@
+.sd-btn--action:hover {
+	color: #fff !important;
+	background-color: #0E8BDF;
+}
+
+.sd-btn--action {
+	color: #0E8BDF !important;
+	background-color: #fff;
+}

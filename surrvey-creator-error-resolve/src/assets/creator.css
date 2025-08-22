@@ -1,0 +1,267 @@
+.svc-toolbox__item:hover use {
+    fill: #0E8BDF !important;
+}
+
+.svc-toolbox__item:focus use {
+    fill: #0E8BDF !important;
+}
+
+.svc-toolbox__item--has-subitems:hover use{
+    fill: #0E8BDF !important;
+}
+
+.svc-toolbox__item--has-subitems:focus use {
+    fill: #0E8BDF !important;
+    background-color: #E6EFF8;
+    /* background-color: #; */
+}
+
+.svc-toolbox__item-submenu-button{
+    background-color: transparent;
+}
+.svc-toolbox__item-submenu-button:hover{
+    background-color: transparent;
+}
+
+/*
+-----------------final subitem button:hover inside "Left side panel"-------------------------------------------------
+*/
+.svc-toolbox__tool--has-subitems:hover > div > div > span > svg use{
+    fill: #0E8BDF !important;
+}
+.svc-toolbox__tool--has-subitems:hover > div > div > span > svg use{
+    fill: #0E8BDF !important;
+}
+
+
+
+use {
+    fill: #626E76 !important;
+}
+
+
+/*
+------------------Add button--------------------------------------------------------------------------------
+*/
+.svc-element__add-new-question.svc-btn:hover>.svc-add-new-item-button__text {
+    color: #ffffff !important;
+}
+
+
+
+.svc-survey-element-toolbar__item:hover {
+    background-color: #E6EFF8 !important;
+}
+
+.sv-svg-icon:hover use {
+    fill: #0E8BDF !important;
+}
+
+.spg-button-group__item--hover:hover {
+    background-color: #fff !important;
+    box-shadow: 0 0 0 var(--ctr-survey-page-border-width-selected, var(--lbr-stroke-x2)) #E0E5E9;
+}
+
+.svc-menu-action__button:hover .sv-svg-icon use,
+.svc-menu-action__button:focus .sv-svg-icon use,
+.svc-menu-action__button:focus-within .sv-svg-icon use {
+  fill: #0E8BDF !important;
+}
+
+/* 3 dots inside Add Question btn */
+.svc-btn:hover > button>span>svg use {
+    fill: #fff !important;
+}
+
+.svc-element__question-type-selector:hover {
+    background-color: transparent;
+    box-shadow: 0 0 0 2px azure ;
+}
+
+
+
+/*
+page ? 
+*/
+
+
+.sd-body__page:focus {
+    box-shadow: 0 0 0 var(--ctr-survey-page-border-width-hovered, var(--lbr-stroke-x2)) rgba(0, 0, 0, 0.9019607843);
+    background-color: transparent;
+}
+/* 
+.svc-btn:hover {
+    outline: solid calc(0.25 * (var(--sjs-base-unit, var(--base-unit, 8px)))) transparent;
+    transition: background-color var(--sjs-creator-transition-duration, 150ms);
+} */
+
+
+.svc-survey-element-toolbar__item:hover .svc-survey-element-toolbar-item__title,
+.svc-survey-element-toolbar__item:hover .sv-svg-icon use {
+  fill: #0E8BDF !important;   /* for the SVG */
+  color: #0E8BDF  !important;  /* for the text */
+}
+
+.svc-list__item-body:focus span .sv-svg-icon use {
+  fill: #fcfeff !important;   /* for the SVG */
+  color: #fcfeff  !important;  /* for the text */
+}
+
+.sd-btn--action:hover {
+    color:  #fff;
+    background-color: #0E8BDF;
+}
+
+.sd-btn--action {
+    color:  #0E8BDF  !important;
+    background-color: #fff;  
+}
+
+
+/*
+--------------List under "Single input tab":-----------------------------------------------------------------------------
+*/
+.svc-list__item--group-selected > .svc-list__item-body .sv-svg-icon use {
+    fill: #fcfeff !important;
+}
+
+/* Selected state (always highest priority) */
+.svc-list__item--group-selected > .svc-list__item-body .sv-svg-icon use {
+    fill: #fcfeff !important;
+}
+
+/* Hover state (only if NOT selected) */
+.svc-list__item.svc-list__item--with-icon:hover:not(.svc-list__item--group-selected) > .svc-list__item-body .sv-svg-icon use {
+    fill: #0E8BDF !important;
+}
+
+
+/* 
+------------------------hover page----------------------------------------------------------------------------------
+*/
+.svc-page__content:focus{
+    box-shadow: 0 0 0 var(--ctr-survey-page-border-width-hovered, var(--lbr-stroke-x2)) #490615;;
+}
+
+.svc-hovered.svc-page__content {
+    box-shadow: 0 0 0 var(--ctr-survey-page-border-width-hovered, var(--lbr-stroke-x2)) #74BEF0;;
+}
+
+
+button:focus, button:focus-visible {
+    outline: none;
+}
+
+
+/*
+--------------------Preview Page-------------------------------------------------------------------------------------------
+*/
+
+/*Main heading : "Preview, Designer, Logic ,etc. "*/
+.svc-tabbed-menu-item--selected > span{ 
+    color: #0E8BDF !important;
+}
+
+
+
+/* Selected icon in "Right side verticle bar" -> which is not keeping selected color of svg" */
+.svc-menu-action__button--selected > div > div > svg use{
+    fill: #0E8BDF !important;
+}
+
+
+
+.svc-toolbox__item-title {
+    
+    color: #626E76  ;
+    
+}
+
+.svc-toolbox__item-banner > span{
+    color:black;
+}
+
+.svc-toolbar__item:is(:hover, :focus) > svg > use {
+    background-color: var(--ctr-menu-toolbar-button-background-color-hovered, var(--sjs-layer-1-background-400, whitesmoke));
+    fill: #0E8BDF !important;
+}
+
+
+/*
+----------------Last button("Preview Survey Again") - after submitting response in preview tab-------------------------------------------------------
+*/
+ .svc-btn:hover > span{
+    color:#fff  !important;
+ }
+
+ /*Star selected */
+ .sd-rating__item-star--selected > svg use{
+    fill: #0E8BDF !important;
+ }
+
+/*
+----------------Right side Bar----------------------------------------------
+*/
+.spg-dropdown .sd-editor-button-item:hover, .spg-dropdown .sd-editor-button-item:focus {
+    border-radius: var(--ctr-editor-button-corner-radius, var(--sjs-corner-radius-x05));
+    background: var(--ctr-editor-button-background-color-hovered, #E6EFF8);
+    transition: background var(--sjs-creator-transition-duration, 150ms);
+}
+
+.spg-dropdown .sd-editor-button-item:hover > svg use, .spg-dropdown .sd-editor-button-item:focus > svg use{
+    fill:#0E8BDF !important;
+}
+
+/*
+ ----------------Right Side bar --->> Input's---------------------------------
+*/
+ /* Hover (default) */
+.spg-input:hover:not(:disabled),
+.spg-input.spg-dropdown:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 var(--ctr-editor-border-width-focused, var(--sjs-stroke-x2)) #626E76;
+}
+
+/* Focus */
+.spg-input:focus:not(:disabled),
+.spg-input.spg-dropdown:focus:not(:disabled),
+.spg-input.spg-dropdown:focus-within:not(:disabled),
+.spg-input-container:focus-within {
+  box-shadow: inset 0 0 0 var(--ctr-editor-border-width-focused, var(--sjs-stroke-x2)) #1793E6;
+}
+
+/* Active */
+.spg-input:active:not(:disabled),
+.spg-input:focus:hover:not(:disabled),
+.spg-input:active:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 var(--ctr-editor-border-width-focused, var(--sjs-stroke-x2)) #1793E6;
+}
+
+
+.svc-sidebar-tabs:not(.svc-sidebar-tabs--collapsed) .svc-menu-action__button--selected {
+	
+	background: var(--ctr-menu-toolbar-button-background-color-selected, var(--sjs-primary-background-10, #E0E5E9));
+}
+
+
+
+
+.sv-action-bar {
+    display: flex;
+    box-sizing: content-box;
+    position: relative;
+    align-items: center;
+    /* margin-left: auto; */
+    overflow: hidden;
+    white-space: nowrap;
+    /* margin-left: 0; */
+}
+
+.sv-action-bar {
+    display: flex;
+    box-sizing: content-box;
+    position: relative;
+    align-items: center;
+    /* margin-left: auto; */
+    overflow: hidden;
+    white-space: nowrap;
+}
