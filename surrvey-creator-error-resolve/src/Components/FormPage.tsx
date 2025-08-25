@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { SurveyComponent } from './SurveyComponent';
-// import "../assets/FormPage.css";
+import "../assets/FormPage.css";
 
 const userId = 7;
 
@@ -35,6 +35,7 @@ export const FormPage = () => {
               minWidth: "300px",
               color: "black"  // safe on mobiles
             }}
+            className='form-component'
             >
               <SurveyComponent
                 surveyJson={singleStructure.checkListStructureJson}

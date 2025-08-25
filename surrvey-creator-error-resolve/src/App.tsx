@@ -9,16 +9,16 @@ function App() {
   return (
     <>
       <div className="page">
-        <Routes>
+        {/* <Routes>
           <Route path='/' Component={Layout}>
             <Route path='/creator' Component={CreatorPage} />
             <Route path='/checklist' Component={FormPage} />
           </Route>
-        </Routes>
-          {/* <Routes>
+        </Routes> */}
+          <Routes>
             <Route path='/creator' Component={CreatorPage} />
             <Route path='/checklist' Component={FormPage} />
-        </Routes> */}
+        </Routes>
       </div>
     </>
   )

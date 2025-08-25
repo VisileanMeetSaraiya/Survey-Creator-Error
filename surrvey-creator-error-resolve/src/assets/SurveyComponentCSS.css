@@ -7,3 +7,64 @@
 	color: #0E8BDF !important;
 	background-color: #fff;
 }
+
+.sd-btn--action:hover {
+	color: #fff !important;
+	background-color: #0E8BDF;
+}
+
+.sd-btn--action {
+	color: #0E8BDF !important;
+	background-color: #fff;
+}
+
+/* background color */
+/* .sv-components-row > .sv-components-column--expandable {
+	width: 1px;
+	background-color: #F3F5F9;
+} */
+
+/*Each input*/
+/* .sd-element--with-frame.sd-question--title-top {
+	padding-top: var(--sd-base-vertical-padding);
+	border-radius: 10px;
+} */
+
+
+
+/*Boolean*/
+/* .sd-boolean__thumb {
+	color: var(--sjs-primary-backcolor, var(--primary, #093B5C));
+	font-weight: 600;
+}
+
+.sd-boolean.sd-boolean--allowhover:focus-within {
+	box-shadow: var(--sjs-shadow-inner-reset, inset 0px 0px 0px 0px rgba(0, 0, 0, 0.15)), 0 0 0 2px var(--sjs-primary-backcolor, var(--primary, #0E8BDF));
+} */
+
+/* Select File */
+/* .sd-action:not(.sd-action--pressed):hover, .sd-action:not(.sd-action--pressed):focus{
+	outline: none;
+	background-color: var(--sjs-primary-backcolor-light, var(--primary-light, #F3F5F9));
+	cursor: pointer;
+	opacity: 1;
+	color:#0E8BDF;
+}
+
+.sd-action:not(.sd-action--pressed):hover .sd-file__choose-btn--text .sv-svg-icon, .sd-action:not(.sd-action--pressed):focus.sd-file__choose-btn--text .sv-svg-icon {
+	fill: #0E8BDF;
+}
+
+ .sd-root-modern *{
+	--sjs-primary-backcolor:#0E8BDF;
+	--sjs-postcss-fix-slider-path-color-filled:#0E8BDF
+} */
+
+
+
+
+/*Signature */
+/* .sjs_sp_canvas.sd-signaturepad__canvas{
+	fill:#0E8BDF !important;
+	color:#0E8BDF !important;
+} */

@@ -243,25 +243,10 @@ button:focus, button:focus-visible {
 }
 
 
-
-
-.sv-action-bar {
-    display: flex;
-    box-sizing: content-box;
-    position: relative;
-    align-items: center;
-    /* margin-left: auto; */
-    overflow: hidden;
-    white-space: nowrap;
-    /* margin-left: 0; */
-}
-
-.sv-action-bar {
-    display: flex;
-    box-sizing: content-box;
-    position: relative;
-    align-items: center;
-    /* margin-left: auto; */
-    overflow: hidden;
-    white-space: nowrap;
+/***********************Temporory FIXXXX*/
+.svc-page__footer .svc-btn {
+	flex-grow: 1;
+	border: none;
+	width: 50%;
+	margin-left: 25px;
 }
