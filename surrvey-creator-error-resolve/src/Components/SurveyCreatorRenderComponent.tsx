@@ -4,7 +4,7 @@ import SurveyCreatorTheme from "survey-creator-core/themes";
 import { registerCreatorTheme } from "survey-creator-core";
 import axios from "axios";
 import { modifiedTheme } from "../assets/theme2";
-
+import "../assets/creator.css"
 
 registerCreatorTheme(SurveyCreatorTheme); // Add predefined Survey 
 
