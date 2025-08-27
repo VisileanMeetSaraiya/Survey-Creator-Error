@@ -13,15 +13,14 @@
 .svc-toolbox__item--has-subitems:focus use {
     fill: #0E8BDF !important;
     background-color: #E6EFF8;
-    /* background-color: #; */
 }
 
-.svc-toolbox__item-submenu-button{
+/* .svc-toolbox__item-submenu-button{
     background-color: transparent;
 }
 .svc-toolbox__item-submenu-button:hover{
     background-color: transparent;
-}
+} */
 
 /*
 -----------------final subitem button:hover inside "Left side panel"-------------------------------------------------
@@ -89,11 +88,11 @@ page ?
     box-shadow: 0 0 0 var(--ctr-survey-page-border-width-hovered, var(--lbr-stroke-x2)) rgba(0, 0, 0, 0.9019607843);
     background-color: transparent;
 }
-/* 
+
 .svc-btn:hover {
     outline: solid calc(0.25 * (var(--sjs-base-unit, var(--base-unit, 8px)))) transparent;
     transition: background-color var(--sjs-creator-transition-duration, 150ms);
-} */
+}
 
 
 .svc-survey-element-toolbar__item:hover .svc-survey-element-toolbar-item__title,
@@ -139,13 +138,13 @@ page ?
 /* 
 ------------------------hover page----------------------------------------------------------------------------------
 */
-.svc-page__content:focus{
+/* .svc-page__content:focus{
     box-shadow: 0 0 0 var(--ctr-survey-page-border-width-hovered, var(--lbr-stroke-x2)) #490615;;
-}
+} */
 
-.svc-hovered.svc-page__content {
-    box-shadow: 0 0 0 var(--ctr-survey-page-border-width-hovered, var(--lbr-stroke-x2)) #74BEF0;;
-}
+/* .svc-hovered.svc-page__content {
+    box-shadow: 0 0 0 var(--ctr-survey-page-border-width-hovered, var(--lbr-stroke-x2)) #d36a2c;;
+} */
 
 
 button:focus, button:focus-visible {
@@ -182,7 +181,7 @@ button:focus, button:focus-visible {
 }
 
 .svc-toolbar__item:is(:hover, :focus) > svg > use {
-    background-color: var(--ctr-menu-toolbar-button-background-color-hovered, var(--sjs-layer-1-background-400, whitesmoke));
+    background-color: var(--ctr-menu-toolbar-button-background-color-hovered, var(--sjs-layer-1-background-400, #fff));
     fill: #0E8BDF !important;
 }
 
@@ -198,6 +197,42 @@ button:focus, button:focus-visible {
  .sd-rating__item-star--selected > svg use{
     fill: #0E8BDF !important;
  }
+
+ .spg-input {
+    font-family: var(--ctr-font-family, var(--sjs-font-family, var(--font-family)));
+    font-size: var(--ctr-font-default-size, var(--sjs-font-size-x2));
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--ctr-font-default-line-height, var(--sjs-line-height-x3));
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-flex;
+    background-color: var(--ctr-editor-background-color, var(--sjs-layer-3-background-500, #f4f4f4));
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    border-radius: var(--ctr-editor-corner-radius, var(--sjs-corner-radius-x1));
+    box-shadow: inset 0 0 0 var(--ctr-editor-border-width, var(--sjs-stroke-x1)) var(--ctr-editor-border-color, var(--sjs-border-10, gainsboro));
+    transition: box-shadow var(--sjs-creator-transition-duration, 150ms);
+    padding-top: calc(var(--ctr-editor-padding-top, var(--sjs-spacing-x05)) + var(--ctr-editor-content-margin-top, var(--sjs-spacing-x1)));
+    padding-right: calc(var(--ctr-editor-padding-right, var(--sjs-spacing-x05)) + var(--ctr-editor-content-margin-right, var(--sjs-spacing-x150)));
+    padding-bottom: calc(var(--ctr-editor-padding-bottom, var(--sjs-spacing-x05)) + var(--ctr-editor-content-margin-bottom, var(--sjs-spacing-x1)));
+    padding-left: calc(var(--ctr-editor-padding-left, var(--sjs-spacing-x05)) + var(--ctr-editor-content-margin-left, var(--sjs-spacing-x150)));
+    outline: none;
+    color: var(--ctr-editor-content-text-color, var(--sjs-layer-3-foreground-100, rgba(0, 0, 0, 0.9019607843)));
+    -webkit-border-radius: var(--ctr-editor-corner-radius, var(--sjs-corner-radius-x1));
+    -moz-border-radius: var(--ctr-editor-corner-radius, var(--sjs-corner-radius-x1));
+    -ms-border-radius: var(--ctr-editor-corner-radius, var(--sjs-corner-radius-x1));
+    -o-border-radius: var(--ctr-editor-corner-radius, var(--sjs-corner-radius-x1));
+}
+
+/*
+---------------Search bar---------------------------------------------------
+*/
+/* .svc-toolbox .svc-search__input {
+    color: #093B5C;
+} */
 
 /*
 ----------------Right side Bar----------------------------------------------
@@ -237,16 +272,59 @@ button:focus, button:focus-visible {
 }
 
 
+
+/* 
+.svc-menu-action__button--selected{
+    background-color: #E0E5E9;
+} */
 .svc-sidebar-tabs:not(.svc-sidebar-tabs--collapsed) .svc-menu-action__button--selected {
 	
 	background: var(--ctr-menu-toolbar-button-background-color-selected, var(--sjs-primary-background-10, #E0E5E9));
 }
 
+/* .svc-sidebar-tabs:is(.svc-sidebar-tabs--collapsed) .svc-menu-action__button--selected > div > div > svg use {
+  fill: #df0e81 !important;
+}  */
+/* survey-creator :not(.svd-simulator-main *), .svc-creator :not(.svd-simulator-main *) use {
+	scrollbar-width: thin;
+	scrollbar-color: var(--ctr-scrollbar-background-color, var(--sjs-border-25-overlay, rgba(0, 0, 0, 0.1490196078))) rgba(0,0,0,0);
+    fill: #626E76 !important;
+} */
 
-/***********************Temporory FIXXXX*/
-/* .svc-page__footer .svc-btn {
-	flex-grow: 1;
-	border: none;
-	width: 50%;
-	margin-left: 25px;
+/*Page's */
+/* .svc-page__content:active {
+    box-shadow: 0 0 0 var(--ctr-survey-page-border-width-hovered, var(--lbr-stroke-x2)) #ff083e;
+} */
+
+
+/************************* Temporery FiXXXXXX ********************************/
+
+.svc-page__footer {
+    overflow: visible !important;
+    margin-left: calc(3*(var(--sjs-base-unit, var(--base-unit, 8px)))) !important;
+    margin-right: calc(3*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    margin-top: calc(2*(var(--sjs-base-unit, var(--base-unit, 8px))));
+    gap: calc(2*(var(--sjs-base-unit, var(--base-unit, 8px))));
+}
+
+
+
+
+/* Checkbox */
+.sd-checkbox--checked .sd-checkbox__svg use {
+    fill:  #fff !important;
+}
+.sd-item--checked .sd-item__decorator {
+    background:  #0e8bdf !important;
+}
+
+
+
+/* Submenu inside rating and Single-line text */ 
+/* this will hide border around submenu box */
+/* .svc-toolbox-subtypes>.sv-popup__container>.sv-popup__body-content {
+    border-radius: var(--ctr-toolbox-submenu-corner-radius, var(--sjs-corner-radius-x1)); */
+    /* box-shadow: var(--ctr-toolbox-submenu-shadow-1-offset-x, 0px) var(--ctr-toolbox-submenu-shadow-1-offset-y, 2px) var(--ctr-toolbox-submenu-shadow-1-blur, 8px) var(--ctr-toolbox-submenu-shadow-1-spread, 0px) var(--ctr-toolbox-submenu-shadow-1-color, var(--sjs-special-glow, rgb(255 255 255 / 0%))), var(--ctr-toolbox-submenu-shadow-2-offset-x, 0px) var(--ctr-toolbox-submenu-shadow-2-offset-y, 16px) var(--ctr-toolbox-submenu-shadow-2-blur, 32px) var(--ctr-toolbox-submenu-shadow-2-spread, 0px) var(--ctr-toolbox-submenu-shadow-2-color, var(--sjs-special-glow, rgba(0, 76, 68, 0.1019607843))); */
+    /* background: var(--ctr-toolbox-submenu-background-color, var(--sjs-layer-1-background-500, white));
+    padding: 0;
 } */

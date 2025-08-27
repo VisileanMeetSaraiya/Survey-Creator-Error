@@ -5,9 +5,11 @@ import { registerCreatorTheme } from "survey-creator-core";
 import axios from "axios";
 import { modifiedTheme } from "../assets/theme2";
 import "../assets/creator.css"
+// import "../assets/IssueFx.css"
 
 registerCreatorTheme(SurveyCreatorTheme); // Add predefined Survey 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createFunction = async (json: any): Promise<void> => {
     await axios.post("http://localhost:8080/checklist/withuser", {
         "userId": 7,

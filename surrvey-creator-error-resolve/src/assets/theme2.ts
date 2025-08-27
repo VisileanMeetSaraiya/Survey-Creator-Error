@@ -23,14 +23,15 @@ export const modifiedTheme: ITheme = {
     "--sjs-border-25": "#585757d3",
     "--sjs-border-10": "#E0E5E9",
     "--sjs-primary-background-500": "#626E76",
-    "--sjs-primary-background-10": "#E6EFF8",
+    "--sjs-primary-background-10":"#E6EFF8",
     "--sjs-primary-background-400":
       "hsl(from var(--sjs-primary-background-500) calc(h - var(--sjs-primary-background-400-deltaH)) calc(s - var(--sjs-primary-background-400-deltaS)) calc(l - var(--sjs-primary-background-400-deltaL)) / calc(1 - var(--sjs-primary-background-400-deltaAlpha)))",
     "--sjs-primary-foreground-100": "#FFFFFF",
     "--sjs-primary-foreground-25": "#FFFFFF40",
     "--sjs-secondary-background-500": "#FFFFFF",
-    "--sjs-secondary-background-25": "#E6EFF8",
-    "--sjs-secondary-background-10": "#E6EFF8",
+    "--sjs-secondary-background-25":"#E6EFF8",
+    "--sjs-secondary-background-10":
+      "hsl(from var(--sjs-secondary-background-500) calc(h - var(--sjs-secondary-background-10-deltaH)) calc(s - var(--sjs-secondary-background-10-deltaS)) calc(l - var(--sjs-secondary-background-10-deltaL)) / calc(1 - var(--sjs-secondary-background-10-deltaAlpha)))",
     "--sjs-secondary-foreground-100": "#FFFFFF",
     "--sjs-secondary-forecolor-25": "#FFFFFF40",
     "--sjs-semantic-red-background-500": "#E50A66",
@@ -97,7 +98,7 @@ export const modifiedTheme: ITheme = {
     "--sjs-special-glow-deltaL": "73.34",
     "--sjs-editorpanel-backcolor": "#E0E5E9",
     "--sjs-editorpanel-hovercolor": "#f9f3f5ff",
-    "--sjs-questionpanel-backcolor": "#E6EFF8",
+    "--sjs-questionpanel-backcolor": "#fff",
     "--sjs-questionpanel-hovercolor": "#0E8BDF",
     "--sjs-font-family": "Open Sans",
     "--sjs-font-size": "16px",
@@ -149,61 +150,54 @@ export const modifiedTheme: ITheme = {
     "--sjs-special-red-light": "#e539351A",
     "--sjs-special-red-forecolor": "#FFFFFF",
     "--sjs-font-questiontitle-color": "#093B5C",
-    "--ctr-toolbox-item-icon-color-hovered, ": "#080b0cff",
-    "--ctr-property-grid-placeholder-text-title-color": "#000",
-    "--ctr-menu-item-text-color": "#093B5C",
-    "--ctr-toolbox-item-banner-display": "#093B5C",
-    "--ctr-toolbox-item-background-color-hovered": "#E6EFF8",
-    "--ctr-toolbox-item-text-color-hovered": "#0E8BDF",
-    "--ctr-menu-toolbar-button-text-color": "#626E76",
-    "--ctr-button-text-color": "#0E8BDF",
-    "--ctr-button-text-color-hovered": "#fff",
-    "--ctr-button-background-color-hovered": "#0E8BDF",
-    "--ctr-survey-ranking-item-text-color-inactiv": "#093B5C",
-    "--ctr-list-item-text-color": "#626E76",
-    "--ctr-survey-question-panel-toolbar-item-text-color": "#626E76",
-    "--ctr-list-item-background-color-selected-submenu": "#0E8BDF",
-    "--ctr-menu-toolbar-button-background-color-hovered": "#E6EFF8",
-    "--ctr-list-item-background-color-selected": "#E6EFF8",
-    "--ctr-list-item-text-color-selected": "#0E588A",
-    "--ctr-list-item-text-color-hovered": "#0E588A",
-    "--ctr-checkbox-text-color": "#7E8C96",
-    "--ctr-label-text-color": "#7E8C96",
-    "--ctr-editor-content-text-color": "#072C45",
-    "--ctr-button-group-item-text-color-selected": "#fff",
-    "--ctr-button-group-item-background-color-selected": "#0E8BDF",
-    "--ctr-button-group-background-color": "#fff",
-    "--ctr-button-group-item-background-color": "#fff",
-    "--ctr-button-group-item-text-color": "#7E8C96",
-    "--ctr-editor-background-color": "#fff",
-    "--ctr-survey-page-border-color-selected": "#000000ff",
-    "--ctr-survey-page-border-color-hover": "#74BEF0",
-    "--ctr-survey-ranking-item-text-color-inactive": "#7E8C96",
-    "--ctr-toolbox-search-text-color": "#000000ff",
-    "--ctr-search-button-background-color-clear-hovered": "#0E8BDF",
-
-    /*Toolbox*/
-    "--ctr-toolbox-item-text-color": "#7E8C96",
-    "--ctr-toolbox-item-icon-color-hovered":"#0E8BDF",
-    /*Submenu inside right-side toolbox*/
-    "--ctr-toolbox-item-submenu-button-background-color-hovered":"#E6EFF8",
-
-    /*  **/
-    "--ctr-menu-toolbar-button-icon-color": "#7E8C96",
-
-    /* color for svg inside input*/
-    "--ctr-survey-question-panel-toolbar-item-icon-color": "#7E8C96",
-    "--ctr-survey-question-panel-toolbar-item-text-color-selected": "#0E8BDF",
-    "--ctr-survey-question-panel-toolbar-item-icon-color-selected": "#0E8BDF",
-    "--ctr-survey-question-panel-toolbar-item-background-color-pressed": "#0E8BDF",
-
-    "--ctr-list-item-icon-color-selected": "#0E8BDF",
+    "--ctr-toolbox-item-icon-color-hovered, ":"#080b0cff",
+    "--ctr-property-grid-placeholder-text-title-color":"#000",
+    "--ctr-menu-item-text-color":"#093B5C",
+    "--ctr-toolbox-item-banner-display":"#093B5C",
+    "--ctr-toolbox-item-background-color-hovered":"#E6EFF8",
+    "--ctr-toolbox-item-text-color-hovered":"#0E8BDF",
+    "--ctr-menu-toolbar-button-text-color":"#626E76",
+    "--ctr-button-text-color":"#0E8BDF",
+    "--ctr-button-text-color-hovered":"#fff",
+    "--ctr-button-background-color-hovered":"#0E8BDF",
+    "--ctr-survey-ranking-item-text-color-inactiv":"#093B5C",
+    "--ctr-list-item-text-color":"#626E76",
+    "--ctr-survey-question-panel-toolbar-item-text-color":"#626E76",
+    "--ctr-list-item-background-color-selected-submenu":"#0E8BDF",
+    "--ctr-menu-toolbar-button-background-color-hovered":"#E6EFF8",
+    "--ctr-list-item-background-color-selected":"#E6EFF8",
+    "--ctr-list-item-text-color-selected":"#0E588A",
+    "--ctr-list-item-text-color-hovered":"#0E588A",
+    "--ctr-checkbox-text-color":"#7E8C96",
+    "--ctr-label-text-color":"#7E8C96",
+    "--ctr-editor-content-text-color" :"#072C45",
+    "--ctr-button-group-item-text-color-selected":"#fff",
+    "--ctr-button-group-item-background-color-selected":"#0E8BDF",
+    "--ctr-button-group-background-color":"#fff",
+    "--ctr-button-group-item-background-color":"#fff",
+    "--ctr-button-group-item-text-color":"#7E8C96",
+    "--ctr-editor-background-color":"#fff",
+    // "--ctr-survey-page-border-width-hovered":"#7E8C96"
+    "--ctr-survey-page-border-color-selected":"#000000ff",
+    "--ctr-survey-page-border-color-hover":"#74BEF0",
+    "--ctr-survey-ranking-item-text-color-inactive":"#7E8C96",
+    "--ctr-menu-toolbar-button-icon-color":"#a71cd1ff",
+    "--ctr-toolbox-search-text-color":"#000000ff",
+    // "--ctr-toolbox-item-background-color-hovered":"#E6EFF8"
 
 
-    /*Right side panel */
-    /*input's states*/
-    "--ctr-editor-border-color-focused": "#0E8BDF",
+    // small dots for navigating pages
+    "--ctr-page-navigator-item-text-color-hovered":"#093B5C",
 
-    "--lbr-popup-menu-background-color-global":"inherit"
+
+    //page hover
+    "--ctr-survey-page-border-width-selected":"#E0E5E9",
+    "--ctr-survey-page-border-width-hovered":"#E0E5E9",
+
+
+
+    //submenu for single-input & Rating scale
+    "--lbr-popup-menu-background-color-global":"#E0E5E9",
+    "--lbr-popup-menu-background-color":"#FFF"
   }
 };

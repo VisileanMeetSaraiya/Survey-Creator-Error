@@ -1,5 +1,5 @@
 import SurveyCreatorRenderComponent from './SurveyCreatorRenderComponent';
-// import "../assets/MinimalCreator.css"
+import "../assets/MinimalCreator.css"
 
 export const CreatorPage = () => {
   return (
