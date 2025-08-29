@@ -7,6 +7,7 @@ const userId = 7;
 
 export const FormPage = () => {
   const [structureList, setStructureList] = useState([]);
+  const [jsonResponse, setJsonResponse] = useState({}); 
 
   useEffect(() => {
     async function fetchData() {
@@ -15,6 +16,18 @@ export const FormPage = () => {
       const res = structureResponse.data;
       res.reverse();
       setStructureList(res);
+
+      const lastResponse = res[0];
+    
+      
+      const checklistId : number = lastResponse.id;
+
+      const lastResponseOfLastChecklist = await axios.get(`http://localhost:8080/response/user/${userId}/checklist/${checklistId}`);
+      const jsonData = lastResponseOfLastChecklist.data[0].response;
+      setJsonResponse(jsonData);
+
+
+        // console.log("JSON response : "+JSON.stringify(jsonData));
     }
     fetchData();
   }, []);
@@ -25,7 +38,7 @@ export const FormPage = () => {
     >
 
       {
-        structureList && structureList.length > 0 ? (
+        structureList && jsonResponse && structureList.length > 0 ? (
           <div key={0}>
             <div className='error-notification'>Checklist : {1}</div>
             <div style={{
@@ -39,6 +52,7 @@ export const FormPage = () => {
               <SurveyComponent
                 surveyJson={structureList[0].checkListStructureJson}
                 checkListId={structureList[0].id}
+                jsonResponse = {jsonResponse}
                 style={{ width: "100%" }}
               />
             </div>

@@ -92,7 +92,7 @@ function SurveyCreatorRenderComponent() {
     try {
       await createFunction(creator.JSON);
       callback(saveNo, true);
-      console.log(creator)
+      // console.log(creator)
     } catch (error) {
       console.error("Save failed:", error);
       callback(saveNo, false);
@@ -100,9 +100,9 @@ function SurveyCreatorRenderComponent() {
   };
 
 
-  creator.onPageAdded.add((sender,options) => {
-    // options.page.addNewQuestion("boolean",`${"isPassed"+{}}`);
-  })
+  // creator.onPageAdded.add((sender,options) => {
+  //   // options.page.addNewQuestion("boolean",`${"isPassed"+{}}`);
+  // })
 
 
   // creator.onQuestionAdded.add((_,options)=>{

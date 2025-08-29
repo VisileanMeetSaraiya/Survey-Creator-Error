@@ -16,39 +16,55 @@ const userRole: string = "qa";
 export const SurveyComponent = (props: any) => {
     const checkListId = (props.checkListId ?? -1);
     const survey = new Model(props.surveyJson);
+    const jsonResponse = (props.jsonResponse ?? {});
+
+    //set json response
+    survey.data = jsonResponse;
 
     survey.pages.forEach((page) => {
 
         const isEditableArray = page.getPropertyValue("isEditableBy");
-        console.log("value using getPropertyValue :---> "+(isEditableArray));
+        // console.log("value using getPropertyValue :---> "+(isEditableArray));
 
         // visibleTo
         const visibleToArray = page.getPropertyValue("visibleTo");
-        console.log("visible to array : "+visibleToArray);
+        // console.log("visible to array : "+visibleToArray);
 
-        if(visibleToArray.includes(userRole)){
+        if (visibleToArray.includes(userRole)) {
             page.visible = true;
-        }else{
+        } else {
             page.visible = false;
         }
-        
 
-        if(isEditableArray.includes(userRole))
-        {
+
+        if (isEditableArray.includes(userRole)) {
             page.readOnly = false;
-        }else{
+        } else {
             page.readOnly = true;
         }
-        
+
     });
 
     survey.applyTheme(modifiedTheme)
     survey.onComplete.add((sender) => {
 
+        console.log("previous data : " + JSON.stringify(jsonResponse));
+        console.log("recent response : " + JSON.stringify(sender.data));
+
+
+        const mergedResponse = {
+            ...jsonResponse,        // previous data
+            ...sender.data          // new data overrides old
+        };
+
+
+        console.log("mergedResponse : " + JSON.stringify(mergedResponse));
+
+
         if (checkListId !== -1) {
             const postResponse = async () => {
                 const response = await axios.post("http://localhost:8080/response", {
-                    "response": sender.data,
+                    "response": mergedResponse,
                     "userId": userId,
                     "checkListId": checkListId
                 });
