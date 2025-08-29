@@ -202,5 +202,7 @@ export const modifiedTheme: ITheme = {
 
     //control property background
     // "--ctr-property-grid-form-background-color":"#F3F5F9"
+
+    "--ctr-property-grid-chapter-caption-text-color-selected":"#093B5C"
   }
 };

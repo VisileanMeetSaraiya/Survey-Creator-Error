@@ -77,7 +77,8 @@ function SurveyCreatorRenderComponent() {
     showLogicTab: true,
     isAutoSave: false,
     showJSONEditorTab: true,
-    showThemeTab: true
+    showThemeTab: true,
+    propertyGridNavigationMode : "accordion"
   });
 
   creator.applyCreatorTheme(modifiedTheme);
@@ -99,16 +100,20 @@ function SurveyCreatorRenderComponent() {
   };
 
 
+  creator.onPageAdded.add((sender,options) => {
+    // options.page.addNewQuestion("boolean",`${"isPassed"+{}}`);
+  })
+
 
   // creator.onQuestionAdded.add((_,options)=>{
   //   options.question. = randomNumber.toString();
   // })
 
-  creator.onQuestionAdded.add((sender, option) => {
-    option.question.showCommentArea = true;
-    option.question.name = randomString();
-    // option.question.readOnly = true;
-  })
+  // creator.onQuestionAdded.add((sender, option) => {
+  //   option.question.showCommentArea = true;
+  //   option.question.name = randomString();
+  //   // option.question.readOnly = true;
+  // })
 
 
   // creator.survey.onAfterRenderQuestion 

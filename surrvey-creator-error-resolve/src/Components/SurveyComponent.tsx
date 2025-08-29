@@ -1,35 +1,45 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
-import { Model, PageModel } from 'survey-core';
+import { Model } from 'survey-core';
 import { Survey } from "survey-react-ui";
 import 'survey-core/survey-core.css';
-// import { newTheme } from '../assets/updatedComonentTheme';
 import "../assets/SurveyComponentCSS.css";
-// import { surveyComponentTheme } from '../assets/SurveyComponentTheme';
-
 import { modifiedTheme } from '../assets/theme2';
 
 const userId = 7;
 
+// const userRole: string = "manager";
 const userRole: string = "qa";
+// const userRole: string = "siteuser";
 
 
 export const SurveyComponent = (props: any) => {
     const checkListId = (props.checkListId ?? -1);
     const survey = new Model(props.surveyJson);
 
-    console.log("Survey : " + JSON.stringify(survey));
+    survey.pages.forEach((page) => {
 
-    // const firstPage = survey.pages[0];
-    // if (firstPage) {
-    //     firstPage.readOnly = true;
-    // }
+        const isEditableArray = page.getPropertyValue("isEditableBy");
+        console.log("value using getPropertyValue :---> "+(isEditableArray));
 
-    survey.pages.forEach((page, idx) => {
-        if(idx != 0)
+        // visibleTo
+        const visibleToArray = page.getPropertyValue("visibleTo");
+        console.log("visible to array : "+visibleToArray);
+
+        if(visibleToArray.includes(userRole)){
+            page.visible = true;
+        }else{
+            page.visible = false;
+        }
+        
+
+        if(isEditableArray.includes(userRole))
         {
+            page.readOnly = false;
+        }else{
             page.readOnly = true;
         }
+        
     });
 
     survey.applyTheme(modifiedTheme)
