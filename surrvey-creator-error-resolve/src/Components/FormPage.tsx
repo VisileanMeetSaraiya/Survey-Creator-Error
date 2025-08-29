@@ -13,6 +13,7 @@ export const FormPage = () => {
       const structureResponse = await axios.get(`http://localhost:8080/checklist/user/${userId}`);
 
       const res = structureResponse.data;
+      res.reverse();
       setStructureList(res);
     }
     fetchData();
@@ -22,7 +23,31 @@ export const FormPage = () => {
     <div
       className='main-div'
     >
-      {structureList && structureList.length > 0 ? (
+
+      {
+        structureList && structureList.length > 0 ? (
+          <div key={0}>
+            <div className='error-notification'>Checklist : {1}</div>
+            <div style={{
+              flex: 1,
+              width: "100%",
+              minWidth: "300px",
+              color: "black"  // safe on mobiles
+            }}
+            className='form-component'
+            >
+              <SurveyComponent
+                surveyJson={structureList[0].checkListStructureJson}
+                checkListId={structureList[0].id}
+                style={{ width: "100%" }}
+              />
+            </div>
+          </div>
+        ) : <div> Error </div>
+      }
+      
+
+      {/* {structureList && structureList.length > 0 ? (
         structureList.map((singleStructure: any, index: number) => (
 
           <div
@@ -46,7 +71,7 @@ export const FormPage = () => {
           </div>
 
         ))
-      ) : <div className='error-notification'>ERROR</div>}
+      ) : <div className='error-notification'>ERROR</div>} */}
     </div>
   );
 

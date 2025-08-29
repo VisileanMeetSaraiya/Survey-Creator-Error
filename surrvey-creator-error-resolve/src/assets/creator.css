@@ -112,8 +112,8 @@ page ?
 }
 
 .sd-btn--action {
-    color:  #0E8BDF  !important;
-    background-color: #fff;  
+    color:  #fff  !important;
+    background-color: #7E8C96;  
 }
 
 
@@ -320,6 +320,18 @@ button:focus, button:focus-visible {
 
 
 
+/* hover on perticular item inside multiSelect-dropdown */
+.sd-tagbox-item_clean-button {
+    display: flex;
+    position: absolute;
+    inset-inline-end: calc(1.5 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+    padding: 0;
+    padding-inline-start: calc(4 * (var(--sjs-base-unit, var(--base-unit, 8px))));
+    /* background: linear-gradient(270deg, var(--sjs-primary-backcolor, var(--primary, #19b394)) 53.12%, rgba(25, 179, 148, 0) 100%); */
+    opacity: 0;
+    transition: opacity var(--sjs-transition-duration, 150ms);
+} 
+
 /* Submenu inside rating and Single-line text */ 
 /* this will hide border around submenu box */
 /* .svc-toolbox-subtypes>.sv-popup__container>.sv-popup__body-content {
@@ -328,3 +340,10 @@ button:focus, button:focus-visible {
     /* background: var(--ctr-toolbox-submenu-background-color, var(--sjs-layer-1-background-500, white));
     padding: 0;
 } */
+
+
+/* Previous & Next button */
+.sd-btn:hover {
+    color: white;
+    background-color: var(--sjs-questionpanel-hovercolor, var(--sjs-general-backcolor-dark, rgb(248, 248, 248)));
+}

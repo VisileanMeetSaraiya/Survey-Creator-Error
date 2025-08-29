@@ -1,12 +1,4 @@
-.sd-btn--action:hover {
-	color: #fff !important;
-	background-color: #0E8BDF;
-}
 
-.sd-btn--action {
-	color: #0E8BDF !important;
-	background-color: #fff;
-}
 
 .sd-btn--action:hover {
 	color: #fff !important;
@@ -14,8 +6,12 @@
 }
 
 .sd-btn--action {
-	color: #0E8BDF !important;
-	background-color: #fff;
+    color:  #fff  !important;
+    background-color: #7E8C96;  
+}
+
+.sd-btn:hover {
+    background-color: #0E8BDF;
 }
 
 /* background color */

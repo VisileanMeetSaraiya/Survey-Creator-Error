@@ -20,7 +20,7 @@ export const modifiedTheme: ITheme = {
     "--sjs-layer-2-background-400": "#DCDCDC",
     "--sjs-special-haze":
       "hsl(from var(--sjs-special-background) calc(h - var(--sjs-special-haze-deltaH)) calc(s - var(--sjs-special-haze-deltaS)) calc(l - var(--sjs-special-haze-deltaL)) / calc(1 - var(--sjs-special-haze-deltaAlpha)))",
-    "--sjs-border-25": "#585757d3",
+    "--sjs-border-25": "#D6DDE2",//585757d3
     "--sjs-border-10": "#E0E5E9",
     "--sjs-primary-background-500": "#626E76",
     "--sjs-primary-background-10":"#E6EFF8",
@@ -97,9 +97,9 @@ export const modifiedTheme: ITheme = {
     "--sjs-special-glow-deltaS": "-30.25",
     "--sjs-special-glow-deltaL": "73.34",
     "--sjs-editorpanel-backcolor": "#E0E5E9",
-    "--sjs-editorpanel-hovercolor": "#f9f3f5ff",
+    "--sjs-editorpanel-hovercolor": "#F3F5F9",
     "--sjs-questionpanel-backcolor": "#fff",
-    "--sjs-questionpanel-hovercolor": "#0E8BDF",
+    "--sjs-questionpanel-hovercolor": "#F3F5F9",
     "--sjs-font-family": "Open Sans",
     "--sjs-font-size": "16px",
     "--sjs-corner-radius": "6px",
@@ -198,6 +198,9 @@ export const modifiedTheme: ITheme = {
 
     //submenu for single-input & Rating scale
     "--lbr-popup-menu-background-color-global":"#E0E5E9",
-    "--lbr-popup-menu-background-color":"#FFF"
+    "--lbr-popup-menu-background-color":"#FFF",
+
+    //control property background
+    // "--ctr-property-grid-form-background-color":"#F3F5F9"
   }
 };
