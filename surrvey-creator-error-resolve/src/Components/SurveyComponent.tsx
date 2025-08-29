@@ -5,6 +5,7 @@ import { Survey } from "survey-react-ui";
 import 'survey-core/survey-core.css';
 import "../assets/SurveyComponentCSS.css";
 import { modifiedTheme } from '../assets/theme2';
+import { useEffect, useState } from 'react';
 
 const userId = 7;
 
@@ -14,9 +15,10 @@ const userRole: string = "qa";
 
 
 export const SurveyComponent = (props: any) => {
+    const [jsonResponse, setJsonResponse] = useState(props.jsonResponse ?? {});
     const checkListId = (props.checkListId ?? -1);
     const survey = new Model(props.surveyJson);
-    const jsonResponse = (props.jsonResponse ?? {});
+    // const jsonResponse = (props.jsonResponse ?? {});
 
     //set json response
     survey.data = jsonResponse;
@@ -48,8 +50,8 @@ export const SurveyComponent = (props: any) => {
     survey.applyTheme(modifiedTheme)
     survey.onComplete.add((sender) => {
 
-        console.log("previous data : " + JSON.stringify(jsonResponse));
-        console.log("recent response : " + JSON.stringify(sender.data));
+        // console.log("previous data : " + JSON.stringify(jsonResponse));
+        // console.log("recent response : " + JSON.stringify(sender.data));
 
 
         const mergedResponse = {
@@ -68,8 +70,9 @@ export const SurveyComponent = (props: any) => {
                     "userId": userId,
                     "checkListId": checkListId
                 });
-                console.log(response.data);
-
+                console.log("Response of Post API :  "+ JSON.stringify(response.data.response));
+                setJsonResponse(response.data.response);
+                // survey.data = newResponse;
             }
             postResponse();
         } else {
@@ -79,6 +82,11 @@ export const SurveyComponent = (props: any) => {
 
 
     });
+
+// USEFUL FOR INSTANT UPDATE ON SAME PAGE BUT WILL SKIP THANK YOU PAGE, because new render will be very immediate
+    // useEffect(()=>{
+    //     survey.data = jsonResponse;
+    // },[jsonResponse]);
 
     return <Survey model={survey} />;
 }

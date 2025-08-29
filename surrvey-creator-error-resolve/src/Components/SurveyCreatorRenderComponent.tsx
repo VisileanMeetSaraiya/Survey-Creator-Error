@@ -64,6 +64,7 @@ const randomString = () => {
 }
 
 // const randomNumber = () : string => (Math.random()*10000000).toString();
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createFunction = async (json: any): Promise<void> => {
   await axios.post("http://localhost:8080/checklist/withuser", {
@@ -116,7 +117,6 @@ function SurveyCreatorRenderComponent() {
   // })
 
 
-  // creator.survey.onAfterRenderQuestion 
 
   creator.activatePropertyGridCategory("general");
   // creator.activatePropertyGridCategory("customCategory");
