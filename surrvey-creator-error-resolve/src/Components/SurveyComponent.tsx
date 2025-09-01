@@ -5,7 +5,7 @@ import { Survey } from "survey-react-ui";
 import 'survey-core/survey-core.css';
 import "../assets/SurveyComponentCSS.css";
 import { modifiedTheme } from '../assets/theme2';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const userId = 7;
 
@@ -15,13 +15,13 @@ const userRole: string = "qa";
 
 
 export const SurveyComponent = (props: any) => {
-    const [jsonResponse, setJsonResponse] = useState(props.jsonResponse ?? {});
+    const [jsonResponse, setJsonResponse] = useState(props.jsonResponse || null);
     const checkListId = (props.checkListId ?? -1);
     const survey = new Model(props.surveyJson);
     // const jsonResponse = (props.jsonResponse ?? {});
 
     //set json response
-    survey.data = jsonResponse;
+    survey.data = jsonResponse != null ? jsonResponse : "";
 
     survey.pages.forEach((page) => {
 
@@ -49,19 +49,15 @@ export const SurveyComponent = (props: any) => {
 
     survey.applyTheme(modifiedTheme)
     survey.onComplete.add((sender) => {
-
         // console.log("previous data : " + JSON.stringify(jsonResponse));
         // console.log("recent response : " + JSON.stringify(sender.data));
-
 
         const mergedResponse = {
             ...jsonResponse,        // previous data
             ...sender.data          // new data overrides old
         };
 
-
         console.log("mergedResponse : " + JSON.stringify(mergedResponse));
-
 
         if (checkListId !== -1) {
             const postResponse = async () => {

@@ -2,6 +2,12 @@ import SurveyCreatorRenderComponent from './SurveyCreatorRenderComponent';
 import "../assets/MinimalCreator.css"
 
 export const CreatorPage = () => {
+  // const [loading, setLoading] = useState(true);
+
+
+
+
+
   return (
     <>
       <div
@@ -13,11 +19,14 @@ export const CreatorPage = () => {
           width: "100%"
         }}
       >
-        <div style={{ width: "090%", height: "100%" }}>
-          <div className="creator-div">
-            <SurveyCreatorRenderComponent />
+        {
+          <div style={{ width: "95%", height: "100%" }}>
+            <div className="creator-div">
+              <SurveyCreatorRenderComponent />
+            </div>
           </div>
-        </div>
+        }
+
       </div>
 
     </>

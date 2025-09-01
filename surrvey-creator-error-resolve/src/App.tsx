@@ -3,6 +3,8 @@ import { CreatorPage } from "./Components/CreatorPage"
 import { FormPage } from "./Components/FormPage"
 import "./App.css"
 import { Layout } from "./Components/Layout"
+import GridExample from "./Components/AGGridExample"
+import CreatorLandinPage from "./Components/CreatorLandinPage"
 
 function App() {
 
@@ -12,7 +14,10 @@ function App() {
         <Routes>
           <Route path='/' Component={Layout}>
             <Route path='/creator' Component={CreatorPage} />
+            <Route path='/creator/:templateId' Component={CreatorPage} />
             <Route path='/checklist' Component={FormPage} />
+            <Route path='/aggrid-example' Component={GridExample} />
+            <Route path='/creator-landing' Component={CreatorLandinPage} />
           </Route>
         </Routes>
           {/* <Routes>

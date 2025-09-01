@@ -7,7 +7,7 @@ const userId = 7;
 
 export const FormPage = () => {
   const [structureList, setStructureList] = useState([]);
-  const [jsonResponse, setJsonResponse] = useState({}); 
+  const [jsonResponse, setJsonResponse] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -18,16 +18,22 @@ export const FormPage = () => {
       setStructureList(res);
 
       const lastResponse = res[0];
-    
-      
-      const checklistId : number = lastResponse.id;
+
+      const checklistId: number = lastResponse.id;
 
       const lastResponseOfLastChecklist = await axios.get(`http://localhost:8080/response/user/${userId}/checklist/${checklistId}`);
-      const jsonData = lastResponseOfLastChecklist.data[0].response;
+      // const jsonData = lastResponseOfLastChecklist.data[0].response.length == 0 ? undefined :  lastResponseOfLastChecklist.data[0].response;
+
+      // setJsonResponse(jsonData);
+      const data = lastResponseOfLastChecklist.data;
+
+      const jsonData =
+        data.length > 0 && data[0].response?.length > 0
+          ? data[0].response
+          : undefined;
+
       setJsonResponse(jsonData);
-
-
-        // console.log("JSON response : "+JSON.stringify(jsonData));
+      console.log("JSON response : " + jsonData);
     }
     fetchData();
   }, []);
@@ -47,21 +53,22 @@ export const FormPage = () => {
               minWidth: "300px",
               color: "black"  // safe on mobiles
             }}
-            className='form-component'
+              className='form-component'
             >
               <SurveyComponent
                 surveyJson={structureList[0].checkListStructureJson}
                 checkListId={structureList[0].id}
-                jsonResponse = {jsonResponse}
+                jsonResponse={jsonResponse}
                 style={{ width: "100%" }}
               />
             </div>
           </div>
         ) : <div> Error </div>
       }
-      
 
-      {/* {structureList && structureList.length > 0 ? (
+
+      {
+        /* {structureList && structureList.length > 0 ? (
         structureList.map((singleStructure: any, index: number) => (
 
           <div
@@ -85,7 +92,9 @@ export const FormPage = () => {
           </div>
 
         ))
-      ) : <div className='error-notification'>ERROR</div>} */}
+        ) : <div className='error-notification'>ERROR</div>} */
+      }
+
     </div>
   );
 

@@ -6,6 +6,9 @@ import axios from "axios";
 import { modifiedTheme } from "../assets/theme2";
 import "../assets/creator.css"
 import { Serializer, SvgRegistry } from "survey-core";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 registerCreatorTheme(SurveyCreatorTheme); // Add predefined Survey 
 
 const customIcon = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -13,21 +16,6 @@ const customIcon = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http:
 </svg>`;
 
 SvgRegistry.registerIcon("tick-icon", customIcon);
-
-//adding canView and canEdit fields at page level
-// Serializer.addProperty("page", {
-//   name: "visibleTo:multiplevalues",
-//   displayName: "Who will be able to see this page?",
-//   category: "customCategory",
-//   isArray: true,
-//   choices: [
-//     { value: "site-user", text: "Site User" },
-//     { value: "QA", text: "QA" },
-//     { value: "Manager", text: "Manager" }
-//   ]
-
-// })
-
 
 //isVisibleTo
 Serializer.addProperty("page", {
@@ -53,52 +41,122 @@ Serializer.addProperty("page", {
   ]
 });
 
-const randomString = () => {
-  let ans = "";
-  for(let i = 0; i < 10; i++){
-     const ri = Math.floor(Math.random() * 26); 
-    const ch = String.fromCharCode(97 + ri); 
-    ans += ch;
-  }
-  return ans;
-}
+// const randomString = () => {
+//   let ans = "";
+//   for(let i = 0; i < 10; i++){
+//      const ri = Math.floor(Math.random() * 26); 
+//     const ch = String.fromCharCode(97 + ri); 
+//     ans += ch;
+//   }
+//   return ans;
+// }
 
 // const randomNumber = () : string => (Math.random()*10000000).toString();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const createFunction = async (json: any): Promise<void> => {
-  await axios.post("http://localhost:8080/checklist/withuser", {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// const createFunction = async (json: any): Promise<void> => {
+//   await axios.post("http://localhost:8080/checklist/withuser", {
+//     "userId": 7,
+//     "structure": json,
+//   });
+// };
+
+
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const createFunction = async (json: any, title: string): Promise<void> => {
+  const response = await axios.post("http://localhost:8080/checklist/create/structure/userandtitle", {
     "userId": 7,
     "structure": json,
+    "title": title
   });
+
+  console.log("response of creator API : " + JSON.stringify(response.data));
+
 };
 
-function SurveyCreatorRenderComponent() {
-  const creator = new SurveyCreator({
-    showLogicTab: true,
-    isAutoSave: false,
-    showJSONEditorTab: true,
-    showThemeTab: true,
-    propertyGridNavigationMode : "accordion"
-  });
 
-  creator.applyCreatorTheme(modifiedTheme);
+const SurveyCreatorRenderComponent = () => {
 
-  creator.showSaveButton = true;
+  const [demoCreator, setDemoCreator] = useState<SurveyCreator>();
+  const [loading, setLoading] = useState(true);
 
-  creator.saveSurveyFunc = async (
-    saveNo: number,
-    callback: (saveNo: number, success: boolean) => void
-  ): Promise<void> => {
-    try {
-      await createFunction(creator.JSON);
-      callback(saveNo, true);
-      // console.log(creator)
-    } catch (error) {
-      console.error("Save failed:", error);
-      callback(saveNo, false);
+  const params = useParams();
+
+  useEffect(() => {
+
+    if (!demoCreator) {
+      const creator = new SurveyCreator({
+        showLogicTab: true,
+        isAutoSave: false,
+        showJSONEditorTab: true,
+        showThemeTab: true,
+        propertyGridNavigationMode: "accordion"
+      });
+
+      creator.applyCreatorTheme(modifiedTheme);
+
+
+
+
+      const templateId = params.templateId;
+      const fetchData = async () => {
+        if (templateId) {
+          const res = await axios.get(`http://localhost:8080/checklist/${templateId}`)
+          const template = res.data.checkListStructureJson;
+          // setStructure(template);
+          creator.JSON = JSON.parse(template);
+          console.log("structure : " + JSON.stringify(template));
+        }
+        setLoading(false)
+      }
+
+      fetchData();
+
+
+
+      creator.showSaveButton = true;
+
+      creator.saveSurveyFunc = async (
+        saveNo: number,
+        callback: (saveNo: number, success: boolean) => void
+      ): Promise<void> => {
+        try {
+          const title = creator.survey.getPropertyValue("title");
+          console.log("Title : " + title)
+          await createFunction(creator.JSON, title);
+          callback(saveNo, true);
+          // console.log(creator)
+        } catch (error) {
+          console.error("Save failed:", error);
+          callback(saveNo, false);
+        }
+      };
+
+      creator.activatePropertyGridCategory("general");
+
+      setDemoCreator(creator);
     }
-  };
+
+  }, [params.templateId, demoCreator]);
+
+  if (loading)
+    return <div>Loading.........</div>
+
+  return (<SurveyCreatorComponent creator={demoCreator ?? new SurveyCreator()} />);
+
+
+
+
+  // creator.JSON = structure ?? {};
+
+  // if (structure) { creator.JSON = JSON.parse(structure); }
+
+
+
 
 
   // creator.onPageAdded.add((sender,options) => {
@@ -118,80 +176,9 @@ function SurveyCreatorRenderComponent() {
 
 
 
-  creator.activatePropertyGridCategory("general");
+
   // creator.activatePropertyGridCategory("customCategory");
-  return (<SurveyCreatorComponent creator={creator} />);
+
 }
 
 export default SurveyCreatorRenderComponent;
-
-
-/*
-
-import { useEffect } from "react";
-import { SurveyCreator, SurveyCreatorComponent } from "survey-creator-react";
-import { registerCreatorTheme } from "survey-creator-core";
-import SurveyCreatorTheme from "survey-creator-core/themes";
-import axios from "axios";
-import { modifiedTheme } from "../assets/theme2";
-
-registerCreatorTheme(SurveyCreatorTheme);
-
-const createFunction = async (json: any): Promise<void> => {
-  await axios.post("http://localhost:8080/checklist/withuser", {
-    userId: 7,
-    structure: json,
-  });
-};
-
-function SurveyCreatorRenderComponent() {
-  useEffect(() => {
-    // Dynamically add CSS files
-    const coreCss = document.createElement("link");
-    coreCss.rel = "stylesheet";
-    coreCss.href = "/survey-creator-core/survey-creator-core.min.css";
-
-    const minimalCss = document.createElement("link");
-    minimalCss.rel = "stylesheet";
-    minimalCss.href = "/assets/MinimalCreator.css";
-
-    document.head.appendChild(coreCss);
-    document.head.appendChild(minimalCss);
-
-    return () => {
-      // Cleanup: remove CSS when component unmounts
-      document.head.removeChild(coreCss);
-      document.head.removeChild(minimalCss);
-    };
-  }, []);
-
-  const creator = new SurveyCreator({
-    showLogicTab: true,
-    isAutoSave: false,
-    showJSONEditorTab: false,
-  });
-
-  creator.applyCreatorTheme(modifiedTheme);
-  creator.showSaveButton = true;
-
-  creator.saveSurveyFunc = async (
-    saveNo: number,
-    callback: (saveNo: number, success: boolean) => void
-  ) => {
-    try {
-      await createFunction(creator.JSON);
-      callback(saveNo, true);
-    } catch (error) {
-      console.error("Save failed:", error);
-      callback(saveNo, false);
-    }
-  };
-
-  return <SurveyCreatorComponent creator={creator} />;
-}
-
-export default SurveyCreatorRenderComponent;
-
-
-
-*/
