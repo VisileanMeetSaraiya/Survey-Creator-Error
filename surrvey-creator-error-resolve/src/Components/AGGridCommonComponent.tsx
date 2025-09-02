@@ -1,12 +1,13 @@
-import { useState } from "react";
-
 import type { ColDef } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry, colorSchemeDark, themeQuartz } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import "../assets/Aggrid.css";
 import { useNavigate } from "react-router-dom";
 
-const myTheme = themeQuartz.withPart(colorSchemeDark);
+
+ModuleRegistry.registerModules([AllCommunityModule]);
+
+// const myTheme = themeQuartz.withPart(colorSchemeDark);
 
 const defaultColDef: ColDef = {
     flex: 1,
@@ -14,7 +15,7 @@ const defaultColDef: ColDef = {
     headerClass: "ag-center-header"
 };
 
-const AGGridCommonComponent = ({ rowData, colDefs, navigateFn }) => {
+const AGGridCommonComponent = ({ rowData, colDefs, navigateFn  }) => {
     const navigate = useNavigate();
 
     return (

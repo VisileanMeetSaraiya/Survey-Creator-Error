@@ -57,7 +57,7 @@ Serializer.addProperty("page", {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // const createFunction = async (json: any): Promise<void> => {
-//   await axios.post("http://localhost:8080/checklist/withuser", {
+//   await axios.post("http://192.168.1.192:8080/checklist/withuser", {
 //     "userId": 7,
 //     "structure": json,
 //   });
@@ -68,7 +68,7 @@ Serializer.addProperty("page", {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createFunction = async (json: any, title: string): Promise<void> => {
-  const response = await axios.post("http://localhost:8080/checklist/create/structure/userandtitle", {
+  const response = await axios.post("http://192.168.1.192:8080/checklist/create/structure/userandtitle", {
     "userId": 7,
     "structure": json,
     "title": title
@@ -99,15 +99,11 @@ const SurveyCreatorRenderComponent = () => {
 
       creator.applyCreatorTheme(modifiedTheme);
 
-
-
-
       const templateId = params.templateId;
       const fetchData = async () => {
         if (templateId) {
-          const res = await axios.get(`http://localhost:8080/checklist/${templateId}`)
+          const res = await axios.get(`http://192.168.1.192:8080/checklist/${templateId}`)
           const template = res.data.checkListStructureJson;
-          // setStructure(template);
           creator.JSON = JSON.parse(template);
           console.log("structure : " + JSON.stringify(template));
         }

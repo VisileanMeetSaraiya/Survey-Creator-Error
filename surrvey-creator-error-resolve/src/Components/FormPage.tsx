@@ -5,13 +5,18 @@ import "../assets/FormPage.css";
 
 const userId = 7;
 
+interface IStructureList {
+  id : number,
+  checkListStructureJson : string
+}
+
 export const FormPage = () => {
-  const [structureList, setStructureList] = useState([]);
+  const [structureList, setStructureList] = useState<IStructureList[]>([]);
   const [jsonResponse, setJsonResponse] = useState({});
 
   useEffect(() => {
     async function fetchData() {
-      const structureResponse = await axios.get(`http://localhost:8080/checklist/user/${userId}`);
+      const structureResponse = await axios.get(`http://192.168.1.192:8080/checklist/user/${userId}`);
 
       const res = structureResponse.data;
       res.reverse();
@@ -21,7 +26,7 @@ export const FormPage = () => {
 
       const checklistId: number = lastResponse.id;
 
-      const lastResponseOfLastChecklist = await axios.get(`http://localhost:8080/response/user/${userId}/checklist/${checklistId}`);
+      const lastResponseOfLastChecklist = await axios.get(`http://192.168.1.192:8080/response/user/${userId}/checklist/${checklistId}`);
       // const jsonData = lastResponseOfLastChecklist.data[0].response.length == 0 ? undefined :  lastResponseOfLastChecklist.data[0].response;
 
       // setJsonResponse(jsonData);

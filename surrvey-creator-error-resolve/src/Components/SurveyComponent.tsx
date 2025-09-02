@@ -19,7 +19,7 @@ export const SurveyComponent = (props: any) => {
     const checkListId = (props.checkListId ?? -1);
     const survey = new Model(props.surveyJson);
     // const jsonResponse = (props.jsonResponse ?? {});
-
+    // survey.set
     //set json response
     survey.data = jsonResponse != null ? jsonResponse : "";
 
@@ -61,7 +61,7 @@ export const SurveyComponent = (props: any) => {
 
         if (checkListId !== -1) {
             const postResponse = async () => {
-                const response = await axios.post("http://localhost:8080/response", {
+                const response = await axios.post("http://192.168.1.192:8080/response", {
                     "response": mergedResponse,
                     "userId": userId,
                     "checkListId": checkListId
