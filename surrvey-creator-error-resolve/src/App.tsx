@@ -7,6 +7,7 @@ import GridExample from "./Components/AGGridExample"
 import CreatorLandinPage from "./Components/CreatorLandinPage"
 import { SiteUserLandingPage } from "./Components/SiteUserLandingPage"
 import { UpdatedSurveyComponent } from "./Components/UpdatedSurveyComponent"
+import { Dashboard } from "./Components/Dashboard"
 
 function App() {
 
@@ -21,7 +22,9 @@ function App() {
             <Route path='/aggrid-example' Component={GridExample} />
             <Route path='/creator-landing' Component={CreatorLandinPage} />
             <Route path='/site-user' Component={SiteUserLandingPage} />
-            <Route path='/survey/:structureId' Component={UpdatedSurveyComponent} />
+            <Route path='/dashboard' Component={Dashboard} />
+            <Route path='/survey/:structureId/user/:userRole' Component={UpdatedSurveyComponent} />
+            
           </Route>
         </Routes>
         {/* <Routes>

@@ -1,0 +1,59 @@
+{
+  "pages": [
+    {
+      "name": "page1",
+      "title": "Site User",
+      "elements": [
+        {
+          "name": "gvkfiealvu",
+          "type": "text",
+          "title": "Site User's opinion....."
+        }
+      ],
+      "visibleTo": [
+        "siteuser",
+        "qa",
+        "manager"
+      ],
+      "isEditableBy": [
+        "siteuser"
+      ]
+    },
+    {
+      "name": "page4",
+      "title": "QA",
+      "elements": [
+        {
+          "name": "zebaicblom",
+          "type": "text",
+          "title": "QA--------"
+        }
+      ],
+      "visibleTo": [
+        "qa",
+        "manager"
+      ],
+      "isEditableBy": [
+        "qa"
+      ]
+    },
+    {
+      "name": "page2",
+      "title": "Manager",
+      "elements": [
+        {
+          "name": "dwinjcknku",
+          "type": "text",
+          "title": "Manager opinion....."
+        }
+      ],
+      "visibleTo": [
+        "manager"
+      ],
+      "isEditableBy": [
+        "manager"
+      ]
+    }
+  ],
+  "headerView": "advanced"
+}

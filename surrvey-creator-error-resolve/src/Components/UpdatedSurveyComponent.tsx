@@ -2,58 +2,108 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Model, Survey } from "survey-react-ui";
+import { modifiedTheme } from "../assets/theme2";
 
-// const SurveyJson =  {
-//   pages: [{
-//     name: "PersonalDetails",
-//     elements: [{
-//       type: "text",
-//       name: "FirstName",
-//       title: "Enter your first name:"
-//     }, {
-//       type: "text",
-//       name: "LastName",
-//       title: "Enter your last name:"
-//     }, {
-//       type: "panel",
-//       name: "Contacts",
-//       state: "collapsed",
-//       title: "Contacts (optional)",
-//       elements: [{
-//         type: "text",
-//         name: "Telegram",
-//         title: "Telegram:"
-//       }, {
-//         type: "text",
-//         name: "GitHub",
-//         title: "GitHub username:"
-//       }]
-//     }]
-//   }]
-// };
+const userId: number = 7;
+// const userRole: string = "siteuser";
+// const userRole: string = "qa";
+
+interface IResponse {
+    "id": number,
+    "response": object,
+    "createdTime": string,
+    "updatedTime": string
+}
+
+interface ICreateResponse {
+    "id": number,
+    "checkListStructureJson": string,
+    "responses": IResponse[],
+    "location": string,
+    "role": string,
+    "titleOfSurvey": string,
+    "template": string
+}
 
 export const UpdatedSurveyComponent = () => {
     const params = useParams();
     const [loading, setLoading] = useState(true);
+    const [jsonResponse, setJsonResponse] = useState({});
     const [surveyModel, setSurveyModel] = useState<Model>(new Model());
 
     useEffect(() => {
         const structureId = params.structureId;
+        const userRole = params.userRole;
+
         const fetchData = async () => {
-            if (structureId) {
-                //api call here
-                const res = await axios.get(`http://192.168.1.192:8080/checklist/${structureId}`)
-                //get structure from response
-                const template = res.data.checkListStructureJson;
-                //set structure to "surveyJson"
-                const tempModel = new Model(template);
-                setSurveyModel(tempModel);
-                //make loading to 'false'
-                setLoading(false);
+            if (!structureId) return;
+
+            const apiRes = userRole === "siteuser"
+                ? await axios.post(`http://192.168.1.192:8080/checklist/assign/new`, {
+                    userId,
+                    checkListId: structureId,
+                })
+                : await axios.get(`http://192.168.1.192:8080/checklist/${structureId}`);
+
+            const res: ICreateResponse = apiRes.data;
+            const template = res.checkListStructureJson;
+
+            // Initialize survey model only once
+            const tempModel = new Model(template);
+
+            tempModel.applyTheme(modifiedTheme);
+            // Set last response only if exists
+            if (res.responses.length > 0) {
+                const lastResponse = res.responses[res.responses.length - 1];
+                setJsonResponse(lastResponse);
+                tempModel.data = lastResponse.response;
             }
-        }
+
+            //restricte access of user
+            tempModel.pages.forEach((page) => {
+
+                const isEditableArray = page.getPropertyValue("isEditableBy");
+
+                // visibleTo
+                const visibleToArray = page.getPropertyValue("visibleTo");
+
+                if (visibleToArray.includes(userRole)) {
+                    page.visible = true;
+                } else {
+                    page.visible = false;
+                }
+
+
+                if (isEditableArray.includes(userRole)) {
+                    page.readOnly = false;
+                } else {
+                    page.readOnly = true;
+                }
+
+            });
+
+            // Add complete handler once
+            tempModel.onComplete.add((sender) => {
+                const mergedResponse = {
+                    ...jsonResponse,
+                    ...sender.data,
+                };
+
+                axios.post("http://192.168.1.192:8080/response/role", {
+                    response: mergedResponse,
+                    userId,
+                    checkListId: res.id,
+                    currentRole: userRole,
+                }).then((response) => setJsonResponse(response.data.response));
+            });
+
+            setSurveyModel(tempModel);
+            setLoading(false);
+        };
+
         fetchData();
-    }, [params.structureId]);
+    }, [params.structureId, params.userRole]); // keep minimal deps
+
 
     if (loading)
         return <div>Loading.........</div>

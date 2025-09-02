@@ -47,7 +47,7 @@ export const SurveyComponent = (props: any) => {
 
     });
 
-    survey.applyTheme(modifiedTheme)
+    survey.applyTheme(modifiedTheme);
     survey.onComplete.add((sender) => {
         // console.log("previous data : " + JSON.stringify(jsonResponse));
         // console.log("recent response : " + JSON.stringify(sender.data));
