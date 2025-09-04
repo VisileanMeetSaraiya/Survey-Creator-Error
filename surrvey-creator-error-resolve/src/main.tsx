@@ -3,12 +3,13 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
-import { UserProvider } from './context/UserProvider.tsx'
+import { store } from './redux/store.ts'
+import { Provider } from 'react-redux'
 
 createRoot(document.getElementById('root')!).render(
-  <UserProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </UserProvider>
-)
+    </Provider>
+  </BrowserRouter>
+);

@@ -5,21 +5,20 @@ import type { ColDef } from "ag-grid-community";
 import AGGridCommonComponent from "./AGGridCommonComponent";
 import axios from "axios";
 import "../assets/SiteUserLandingPage.css";
+import { useDispatch, useSelector } from "react-redux";
+import type { IListingRow, RoleState } from "../Types/types";
+import { changeRole } from "../redux/slice/roleSlice";
 
-interface IRow {
-    id: number;
-    title: string;
-    // label: string;
-    responses: string;
-    author: string;
-    description: string;
-}
 
 export const SiteUserLandingPage = () => {
+    const dispatch = useDispatch();
+    const globalRole : RoleState = useSelector((state)=>state.roleValue);
+    console.log("global State : "+ JSON.stringify(globalRole));
+    
 
     const handleChange = (event: any) => {
         console.log("select fn data : " + event.target.value);
-        setCurrentUserRole(event.target.value);
+        dispatch(changeRole(event.target.value));
     }
 
     const [currentUserRole, setCurrentUserRole] = useState<string>("siteuser");
@@ -32,39 +31,31 @@ export const SiteUserLandingPage = () => {
         navigate(`/survey/${event.data.id}/user/${currentUserRole}`)
     }
 
-    const [rowData, setRowData] = useState<IRow[]>([]);
-    const [colDefs, setColDefs] = useState<ColDef<IRow>[]>([
-        {
-            headerCheckboxSelection: true, // adds a checkbox in the header for "select all"
-            checkboxSelection: true, 
-            filter: false,      // adds checkbox to each row
-            width: 50,
-            pinned: "left"
-        },
+    const [rowData, setRowData] = useState<IListingRow[]>([]);
+    const [colDefs, setColDefs] = useState<ColDef<IListingRow>[]>([
         {
             headerName: "#",
             valueGetter: (params) => params.node.rowIndex! + 1, // rowIndex starts from 0
             width: 70,
-            pinned: "left",
             sortable: false,
             filter: false,
         },
-        { field: "id" , headerName: "ID"},
+        { field: "id", headerName: "ID" },
         { field: "title", headerName: "Checklist Name" },
         // { field: "label", headerName: "Label" },
-        { field: "responses", headerName: "Responses" },
-        { field: "author", headerName: "Author" },
-        { field: "description", headerName: "Description" },
+        { field: "responseCount", headerName: "Responses", valueFormatter: (params) =>params.value != null ? `${params.value} responses` : " "},
+        { field: "authorName", headerName: "Author" },
+        { field: "descriptionOfSurvey", headerName: "Description" },
     ]);
 
     const fetchData = useCallback(async () => {
-        const url = currentUserRole === "siteuser"
-            ? "http://192.168.1.192:8080/checklist/templates"
+        const url = globalRole.role === "siteuser"
+            ? "http://192.168.1.192:8080/checklist/templates/v2"
             : "http://192.168.1.192:8080/checklist/templates/qa";
 
         const response = await axios.get(url);
         setRowData(response.data);
-    }, [currentUserRole]);
+    }, [globalRole]);
 
     useEffect(() => {
         fetchData();
@@ -76,10 +67,11 @@ export const SiteUserLandingPage = () => {
                 <div className='header'>
                     <div>{currentUserRole === "qa" ? 'Q.A.' : 'Site-User'} Page</div>
                     <div className="role-dropdown">
-                        <select name="role-drodowm" id="role-drodowm" className="role-dropdown" onChange={handleChange} value={currentUserRole}>
+                        <select name="role-drodowm" id="role-drodowm" className="role-dropdown" onChange={handleChange} value={globalRole.role}>
                             <option value="siteuser">Site User</option>
                             <option value="qa">Q.A.</option>
                         </select>
+                        <div>Global role: {globalRole.role}</div>
                     </div>
                 </div>
                 {(rowData.length > 0) ? <AGGridCommonComponent rowData={rowData} colDefs={colDefs} navigateFn={surveyNavigationFn} /> : <div>Error from CreatorLandinPage </div>}

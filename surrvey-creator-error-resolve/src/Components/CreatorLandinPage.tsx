@@ -5,7 +5,6 @@ import axios from 'axios';
 import AGGridCommonComponent from './AGGridCommonComponent';
 import "../assets/CreatorLandingPage.css";
 import { useNavigate } from 'react-router-dom';
-
 /*
 {
         "id": 113,
@@ -25,6 +24,7 @@ interface IRow {
 }
 
 const CreatorLandinPage = () => {
+    const [hide, setHide] = useState(false);
     const navigate = useNavigate();
 
     const creatorNavigationFn = (event) => {
@@ -36,17 +36,9 @@ const CreatorLandinPage = () => {
     // Column Definitions: Defines & controls grid columns.
     const [colDefs, setColDefs] = useState<ColDef<IRow>[]>([
         {
-            headerCheckboxSelection: true, // adds a checkbox in the header for "select all"
-            checkboxSelection: true,
-            filter: false,      // adds checkbox to each row
-            width: 50,
-            pinned: "left"
-        },
-        {
             headerName: "#",
             valueGetter: (params) => params.node.rowIndex! + 1, // rowIndex starts from 0
             width: 70,
-            pinned: "left",
             sortable: false,
             filter: false,
         },
@@ -103,7 +95,7 @@ const CreatorLandinPage = () => {
             <div className="container">
                 <div className='header'>
                     <div>Creator Page</div>
-                    <button className='new_chk' onClick={() => navigate("/creator")}>+ New Checklist</button>
+                    <button className={"new_chk"  } onClick={() => navigate("/creator")}>+ New Checklist</button>
                 </div>
                 {(rowData.length > 0) ? <AGGridCommonComponent rowData={rowData} colDefs={colDefs} navigateFn={creatorNavigationFn} /> : <div>Error from CreatorLandinPage </div>}
             </div>

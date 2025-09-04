@@ -8,6 +8,7 @@ import CreatorLandinPage from "./Components/CreatorLandinPage"
 import { SiteUserLandingPage } from "./Components/SiteUserLandingPage"
 import { UpdatedSurveyComponent } from "./Components/UpdatedSurveyComponent"
 import { Dashboard } from "./Components/Dashboard"
+import CommonLandingScreen from "./Components/LandingScreens/CommonLandingScreen"
 
 function App() {
 
@@ -24,7 +25,8 @@ function App() {
             <Route path='/site-user' Component={SiteUserLandingPage} />
             <Route path='/dashboard' Component={Dashboard} />
             <Route path='/survey/:structureId/user/:userRole' Component={UpdatedSurveyComponent} />
-            
+            <Route path='/survey/:structureId' Component={UpdatedSurveyComponent} />
+            <Route path="/common" Component={CommonLandingScreen}/>
           </Route>
         </Routes>
         {/* <Routes>

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { Model, Survey } from "survey-react-ui";
 import { modifiedTheme } from "../assets/theme2";
+import { useSelector } from "react-redux";
+import type { RoleState } from "../Types/types";
 
 const userId: number = 7;
 // const userRole: string = "siteuser";
@@ -30,10 +32,13 @@ export const UpdatedSurveyComponent = () => {
     const [loading, setLoading] = useState(true);
     const [jsonResponse, setJsonResponse] = useState({});
     const [surveyModel, setSurveyModel] = useState<Model>(new Model());
+    const userrole: RoleState = useSelector((s) => s.roleValue);
+    const userRole = userrole.role;
 
+    
     useEffect(() => {
         const structureId = params.structureId;
-        const userRole = params.userRole;
+
 
         const fetchData = async () => {
             if (!structureId) return;
@@ -53,7 +58,7 @@ export const UpdatedSurveyComponent = () => {
 
             tempModel.applyTheme(modifiedTheme);
             // Set last response only if exists
-            if (res.responses.length > 0) {
+            if (res.responses?.length > 0) {
                 const lastResponse = res.responses[res.responses.length - 1];
                 setJsonResponse(lastResponse);
                 tempModel.data = lastResponse.response;

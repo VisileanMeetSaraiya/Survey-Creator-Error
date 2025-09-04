@@ -1,4 +1,4 @@
-import type { ColDef } from "ag-grid-community";
+import type { ColDef, RowSelectionOptions } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry, colorSchemeDark, themeQuartz } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import "../assets/Aggrid.css"
@@ -31,8 +31,15 @@ const defaultColDef: ColDef = {
     filter: true,
     resizable: true,
     menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
+    
 };
 
+const rowSelectionOptions : RowSelectionOptions = {
+    mode:"multiRow",
+    checkboxes : true,
+    checkboxLocation:"selectionColumn",
+
+}
 const AGGridCommonComponent = ({ rowData, colDefs, navigateFn }) => {
 
     return (
@@ -45,7 +52,9 @@ const AGGridCommonComponent = ({ rowData, colDefs, navigateFn }) => {
                         columnDefs={colDefs}
                         defaultColDef={defaultColDef}
                         onRowClicked={navigateFn}
-                        rowSelection={"multiple"}
+                        rowSelection={
+                            rowSelectionOptions
+                        }
                         onCellClicked={(params) => {
                             // Prevent navigation if checkbox cell is clicked
                             if (params.colDef.checkboxSelection) return;

@@ -1,0 +1,21 @@
+.hideBtn {
+    display: none;
+}
+
+.chk_btn {
+    font-size: 0.875em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.25rem;
+    background-color: #0E8BDF;
+    color: #fff;
+    border-radius: 12.5rem;
+    padding: 0.49656rem 0.86894rem;
+    -webkit-border-radius: 12.5rem;
+    -moz-border-radius: 12.5rem;
+    -ms-border-radius: 12.5rem;
+    -o-border-radius: 12.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    border: none;
+}
