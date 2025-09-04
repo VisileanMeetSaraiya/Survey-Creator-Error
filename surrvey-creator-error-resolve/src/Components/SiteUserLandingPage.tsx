@@ -9,6 +9,10 @@ import "../assets/SiteUserLandingPage.css";
 interface IRow {
     id: number;
     title: string;
+    // label: string;
+    responses: string;
+    author: string;
+    description: string;
 }
 
 export const SiteUserLandingPage = () => {
@@ -30,8 +34,27 @@ export const SiteUserLandingPage = () => {
 
     const [rowData, setRowData] = useState<IRow[]>([]);
     const [colDefs, setColDefs] = useState<ColDef<IRow>[]>([
-        { field: "id" },
-        { field: "title" }
+        {
+            headerCheckboxSelection: true, // adds a checkbox in the header for "select all"
+            checkboxSelection: true, 
+            filter: false,      // adds checkbox to each row
+            width: 50,
+            pinned: "left"
+        },
+        {
+            headerName: "#",
+            valueGetter: (params) => params.node.rowIndex! + 1, // rowIndex starts from 0
+            width: 70,
+            pinned: "left",
+            sortable: false,
+            filter: false,
+        },
+        { field: "id" , headerName: "ID"},
+        { field: "title", headerName: "Checklist Name" },
+        // { field: "label", headerName: "Label" },
+        { field: "responses", headerName: "Responses" },
+        { field: "author", headerName: "Author" },
+        { field: "description", headerName: "Description" },
     ]);
 
     const fetchData = useCallback(async () => {

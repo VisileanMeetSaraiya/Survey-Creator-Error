@@ -56,22 +56,12 @@ Serializer.addProperty("page", {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// const createFunction = async (json: any): Promise<void> => {
-//   await axios.post("http://192.168.1.192:8080/checklist/withuser", {
-//     "userId": 7,
-//     "structure": json,
-//   });
-// };
-
-
-
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const createFunction = async (json: any, title: string): Promise<void> => {
+const createFunction = async (json: any, title: string, description:string): Promise<void> => {
   const response = await axios.post("http://192.168.1.192:8080/checklist/create/structure/userandtitle", {
     "userId": 7,
     "structure": json,
-    "title": title
+    "title": title,
+    "description":description
   });
 
   console.log("response of creator API : " + JSON.stringify(response.data));
@@ -122,8 +112,8 @@ const SurveyCreatorRenderComponent = () => {
       ): Promise<void> => {
         try {
           const title = creator.survey.getPropertyValue("title");
-          console.log("Title : " + title)
-          await createFunction(creator.JSON, title);
+          const description = creator.survey.getPropertyValue("description");
+          await createFunction(creator.JSON, title, description);
           callback(saveNo, true);
           // console.log(creator)
         } catch (error) {

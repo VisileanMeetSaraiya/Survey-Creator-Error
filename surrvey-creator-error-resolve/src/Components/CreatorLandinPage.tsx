@@ -6,9 +6,22 @@ import AGGridCommonComponent from './AGGridCommonComponent';
 import "../assets/CreatorLandingPage.css";
 import { useNavigate } from 'react-router-dom';
 
+/*
+{
+        "id": 113,
+        "title": "d title",
+        "authorName": "demo_user2",
+        "responseCount": 0,
+        "descriptionOfSurvey": "d description"
+    }
+*/
 interface IRow {
     id: number;
     title: string;
+    // label: string;
+    responseCount: string;
+    authorName: string;
+    descriptionOfSurvey: string;
 }
 
 const CreatorLandinPage = () => {
@@ -22,8 +35,27 @@ const CreatorLandinPage = () => {
     const [rowData, setRowData] = useState<IRow[]>([]);
     // Column Definitions: Defines & controls grid columns.
     const [colDefs, setColDefs] = useState<ColDef<IRow>[]>([
-        { field: "id" },
-        { field: "title" },
+        {
+            headerCheckboxSelection: true, // adds a checkbox in the header for "select all"
+            checkboxSelection: true,
+            filter: false,      // adds checkbox to each row
+            width: 50,
+            pinned: "left"
+        },
+        {
+            headerName: "#",
+            valueGetter: (params) => params.node.rowIndex! + 1, // rowIndex starts from 0
+            width: 70,
+            pinned: "left",
+            sortable: false,
+            filter: false,
+        },
+        { field: "id", headerName: "ID" },
+        { field: "title", headerName: "Checklist Name" },
+        // { field: "label", headerName: "Label" },
+        { field: "responseCount", headerName: "Responses", valueFormatter: (params) =>params.value != null ? `${params.value} responses` : " "},
+        { field: "authorName", headerName: "Author" },
+        { field: "descriptionOfSurvey", headerName: "Description" },
         {
             headerName: "Actions",
             cellRenderer: (params) => {
@@ -50,14 +82,13 @@ const CreatorLandinPage = () => {
                     </button>
                 );
             },
-        }
-
+        },
     ]);
 
     useEffect(() => {
         const fetchData = async () => {
 
-            const AllStructureAPIResponse = await axios.get("http://192.168.1.192:8080/checklist/templates");
+            const AllStructureAPIResponse = await axios.get("http://192.168.1.192:8080/checklist/templates/v2");
 
             const datalist: IRow[] = AllStructureAPIResponse.data;
             setRowData(datalist);

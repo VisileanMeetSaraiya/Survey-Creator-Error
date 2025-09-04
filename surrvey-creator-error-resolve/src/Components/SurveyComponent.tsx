@@ -15,37 +15,36 @@ const userRole: string = "qa";
 
 
 export const SurveyComponent = (props: any) => {
-    const [jsonResponse, setJsonResponse] = useState(props.jsonResponse || null);
     const checkListId = (props.checkListId ?? -1);
     const survey = new Model(props.surveyJson);
     // const jsonResponse = (props.jsonResponse ?? {});
     // survey.set
     //set json response
-    survey.data = jsonResponse != null ? jsonResponse : "";
+    // survey.data = jsonResponse != null ? jsonResponse : "";
 
-    survey.pages.forEach((page) => {
+    // survey.pages.forEach((page) => {
 
-        const isEditableArray = page.getPropertyValue("isEditableBy");
-        // console.log("value using getPropertyValue :---> "+(isEditableArray));
+    //     const isEditableArray = page.getPropertyValue("isEditableBy");
+    //     // console.log("value using getPropertyValue :---> "+(isEditableArray));
 
-        // visibleTo
-        const visibleToArray = page.getPropertyValue("visibleTo");
-        // console.log("visible to array : "+visibleToArray);
+    //     // visibleTo
+    //     const visibleToArray = page.getPropertyValue("visibleTo");
+    //     // console.log("visible to array : "+visibleToArray);
 
-        if (visibleToArray.includes(userRole)) {
-            page.visible = true;
-        } else {
-            page.visible = false;
-        }
+    //     if (visibleToArray.includes(userRole)) {
+    //         page.visible = true;
+    //     } else {
+    //         page.visible = false;
+    //     }
 
 
-        if (isEditableArray.includes(userRole)) {
-            page.readOnly = false;
-        } else {
-            page.readOnly = true;
-        }
+    //     if (isEditableArray.includes(userRole)) {
+    //         page.readOnly = false;
+    //     } else {
+    //         page.readOnly = true;
+    //     }
 
-    });
+    // });
 
     survey.applyTheme(modifiedTheme);
     survey.onComplete.add((sender) => {
@@ -75,7 +74,10 @@ export const SurveyComponent = (props: any) => {
             console.log("failed !!!!!!!!!!!!!!!!");
 
         }
-
+        survey.addExpressionProperty("expression property",(obj,res)=>{
+            console.log("obj "+obj);
+            console.log("res "+res);
+        })
 
     });
 
