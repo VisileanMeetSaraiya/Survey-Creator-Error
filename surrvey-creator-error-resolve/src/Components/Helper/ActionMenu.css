@@ -1,0 +1,85 @@
+/* container */
+.action-menu {
+  position: relative;
+  display: inline-block;
+}
+
+/* 3 dots button */
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* 3 dots icon */
+.dots-icon {
+  width: 20px;
+  height: 20px;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.action-btn:hover .dots-icon {
+  color: #0e8bdf;
+}
+
+/* popup hidden by default */
+.popup-menu {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  min-width: 140px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: none;         /* hidden */
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* when open */
+.popup-menu.open {
+  display: flex;
+}
+
+/* menu item */
+.popup-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.popup-item:hover {
+  background: #f3f5f9;
+}
+
+/* Allow popup to overflow outside cell */
+.ag-theme-alpine .ag-cell {
+  overflow: visible !important;
+}
+
+.action-menu {
+  position: relative;
+  display: inline-block;
+  z-index: 10; /* higher than grid cells */
+}
+
+.popup-menu {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  min-width: 140px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  z-index: 9999; /* ensures it floats above grid */
+}
+
+.popup-menu.open {
+  display: flex;
+}

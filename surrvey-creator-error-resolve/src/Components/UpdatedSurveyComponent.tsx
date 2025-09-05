@@ -35,7 +35,7 @@ export const UpdatedSurveyComponent = () => {
     const userrole: RoleState = useSelector((s) => s.roleValue);
     const userRole = userrole.role;
 
-    
+
     useEffect(() => {
         const structureId = params.structureId;
 
@@ -86,6 +86,13 @@ export const UpdatedSurveyComponent = () => {
                 }
 
             });
+
+            if (userRole === "admin") {
+                tempModel.pages.forEach((page) => {
+                    page.visible = true;
+                    page.readOnly = false;
+                });
+            }
 
             // Add complete handler once
             tempModel.onComplete.add((sender) => {

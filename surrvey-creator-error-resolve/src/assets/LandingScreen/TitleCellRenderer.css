@@ -1,0 +1,44 @@
+.title-link {
+    cursor: pointer;
+    color: inherit;
+    /*normaltextcolor*/text-decoration: none;
+    /*nounderlineinitially*/transition: color 0.1s ease-in-out;
+    -webkit-transition: color 0.2s ease-in-out;
+    -moz-transition: color 0.2s ease-in-out;
+    -ms-transition: color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out;
+}
+
+.title-link:hover {
+    color: #0e8bdf;
+    text-decoration: underline;
+}
+
+
+.title-cell-btn {
+    position: absolute;
+    right: 0;
+    /* stick to right instead of left */
+    top: 50%;
+    /* center vertically */
+    transform: translateY(-50%);
+    color: #0E8BDF;
+    background-color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #0E8BDF;
+    cursor: pointer;
+    opacity: 0;
+    /* hidden by default */
+    transition: opacity 0.2s ease-in-out;
+}
+
+.title-cell-btn:hover {
+    color: #fff;
+    background-color: #0E8BDF;
+}
+
+.title-cell-wrapper:hover .title-cell-btn {
+    opacity: 1;
+    /* only show when parent hovered */
+}

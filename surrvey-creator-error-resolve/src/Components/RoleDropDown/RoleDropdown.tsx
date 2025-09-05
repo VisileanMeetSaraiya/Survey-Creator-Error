@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "../../redux/store"
 import type { RoleState } from "../../Types/types"
 import { useLocation, useNavigate } from "react-router-dom"
+import type { ChangeEvent } from "react"
 
 
 
@@ -25,7 +26,7 @@ const RoleDropdown: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleRoleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleRoleChange = (event: any) => {
     dispatch(changeRole(event.target.value));
     if(!location.pathname.includes("common")){
       navigate("/common");

@@ -15,4 +15,10 @@ interface IListingRow{
     descriptionOfSurvey: string;
 }
 
-export type {RoleState, IGlobalState, IListingRow};
+interface IDashboardRow {
+    id: number;
+    title: string;
+    status: string;
+}
+
+export type {RoleState, IGlobalState, IListingRow, IDashboardRow};
